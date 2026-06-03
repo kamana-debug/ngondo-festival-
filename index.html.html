@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festival Ngondo — Fête des Peuples Sawa / Festival of the Sawa People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bleu: #1B4F72;
+  --bleu-fonce: #0D2B40;
+  --bleu-moyen: #2E86C1;
+  --bleu-clair: #AED6F1;
+  --bleu-pale: #EAF4FB;
+  --or: #C8972A;
+  --or-clair: #E8C060;
+  --blanc: #FAFCFF;
+  --gris-clair: #F0F4F8;
+  --texte: #0D1F2D;
+  --texte-sec: #3D5A6E;
+  --bordure: #C5DCF0;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--blanc); color: var(--texte); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem; height: 64px;
+  background: rgba(13, 43, 64, 0.96); backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(174, 214, 241, 0.15);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--bleu-clair); text-decoration: none; letter-spacing: 0.04em; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(174, 214, 241, 0.65); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--bleu-clair); }
+.lang-switch { display: flex; gap: 0; border: 1px solid rgba(174,214,241,0.3); overflow: hidden; }
+.lang-btn { padding: 0.3rem 0.7rem; font-size: 0.72rem; letter-spacing: 0.1em; background: none; border: none; color: rgba(174,214,241,0.5); cursor: pointer; transition: all 0.2s; }
+.lang-btn.active { background: var(--bleu-moyen); color: #fff; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; position: relative; display: flex; align-items: center;
+  background: var(--bleu-fonce); overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ngondo_2009.jpg/1200px-Ngondo_2009.jpg');
+  background-size: cover; background-position: center;
+  opacity: 0.25; filter: saturate(0.7);
+}
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(13,43,64,0.92) 45%, rgba(27,79,114,0.6) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 8rem 5rem 5rem; max-width: 680px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(174,214,241,0.12); border: 1px solid rgba(174,214,241,0.3);
+  padding: 0.4rem 1rem; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--bleu-clair); margin-bottom: 1.5rem;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--or); flex-shrink: 0; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 600; line-height: 1.05; color: #fff; margin-bottom: 0.4rem; }
+.hero-title em { font-style: italic; color: var(--bleu-clair); }
+.hero-subtitle { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: rgba(174,214,241,0.6); margin-bottom: 1.75rem; }
+.hero-desc { font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.6); max-width: 480px; margin-bottom: 2.5rem; }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--bleu-moyen); color: #fff; text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; transition: background 0.2s, transform 0.15s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #2471A3; transform: translateY(-2px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid rgba(174,214,241,0.4); color: var(--bleu-clair); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 2rem; transition: border-color 0.2s, color 0.2s; background: none; cursor: pointer; }
+.btn-secondary:hover { border-color: var(--bleu-clair); color: #fff; }
+.hero-stats { position: absolute; right: 5rem; bottom: 4rem; z-index: 2; display: flex; gap: 3rem; }
+.stat { text-align: right; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; color: var(--bleu-clair); line-height: 1; }
+.stat-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(174,214,241,0.45); margin-top: 0.25rem; }
+
+/* ── SECTIONS ── */
+section { padding: 6rem 5rem; }
+.section-tag { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bleu-moyen); display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.section-tag::before { content: ''; width: 2rem; height: 1px; background: var(--bleu-moyen); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 600; line-height: 1.2; color: var(--bleu-fonce); margin-bottom: 1rem; }
+
+/* ── UNESCO BANNER ── */
+.unesco-banner {
+  background: var(--bleu-fonce); padding: 1.5rem 5rem;
+  display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+}
+.unesco-icon { font-size: 1.5rem; flex-shrink: 0; }
+.unesco-text { font-size: 0.85rem; color: rgba(174,214,241,0.75); line-height: 1.6; }
+.unesco-text strong { color: var(--bleu-clair); font-weight: 500; }
+
+/* ── HISTOIRE ── */
+#histoire { background: var(--blanc); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.histoire-img-wrap { position: relative; }
+.histoire-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  display: block; filter: saturate(0.85);
+}
+.histoire-img-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(13,43,64,0.85));
+  padding: 3rem 1.5rem 1.5rem;
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem;
+  color: rgba(174,214,241,0.85); line-height: 1.5;
+}
+.histoire-texte p { font-size: 0.95rem; line-height: 1.9; color: var(--texte-sec); margin-bottom: 1.4rem; }
+.histoire-texte p:first-of-type { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--bleu); line-height: 1.6; }
+.histoire-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+.histoire-tag { padding: 0.3rem 0.9rem; border: 1px solid var(--bordure); font-size: 0.75rem; color: var(--bleu); letter-spacing: 0.08em; }
+
+/* ── PHOTOS ── */
+#photos { background: var(--gris-clair); padding: 5rem; }
+#photos .section-title { margin-bottom: 2.5rem; }
+.photos-grille { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 0.5rem; }
+.photo-item { overflow: hidden; position: relative; }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; filter: saturate(0.85); }
+.photo-item:hover img { transform: scale(1.04); }
+.photo-item:first-child { grid-row: 1 / 3; }
+.photo-item:first-child img { height: 480px; }
+.photo-item:not(:first-child) img { height: 230px; }
+.photo-overlay { position: absolute; inset: 0; background: rgba(13,43,64,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+.photo-item:hover .photo-overlay { background: rgba(13,43,64,0.4); }
+.photo-caption { font-size: 0.78rem; color: rgba(255,255,255,0); letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+.photo-item:hover .photo-caption { color: rgba(174,214,241,0.9); }
+
+/* ── PROGRAMME ── */
+#programme { background: var(--bleu-fonce); color: #fff; }
+#programme .section-title { color: #fff; }
+.prog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 2rem; }
+.prog-desc { font-size: 0.9rem; color: rgba(174,214,241,0.55); max-width: 380px; line-height: 1.7; }
+.jours-filtres { display: flex; gap: 0; border: 1px solid rgba(174,214,241,0.25); }
+.jour-btn { padding: 0.5rem 1.25rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; color: rgba(174,214,241,0.5); cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.jour-btn.actif { background: var(--bleu-moyen); color: #fff; }
+.jour-btn:hover:not(.actif) { color: var(--bleu-clair); }
+.events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: rgba(174,214,241,0.1); }
+.event-card { background: var(--bleu-fonce); padding: 1.75rem; transition: background 0.2s; cursor: default; border-top: 2px solid transparent; }
+.event-card:hover { background: rgba(46,134,193,0.08); border-top-color: var(--bleu-moyen); }
+.event-card.vedette { border-top-color: var(--or); }
+.event-heure { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--or-clair); margin-bottom: 0.6rem; }
+.event-nom { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; }
+.event-desc { font-size: 0.83rem; line-height: 1.7; color: rgba(174,214,241,0.5); margin-bottom: 1.2rem; }
+.event-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+.event-lieu { font-size: 0.73rem; color: rgba(174,214,241,0.4); }
+.tag { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.7rem; border: 1px solid; }
+.tag-eau { color: #7ABDD6; border-color: rgba(122,189,214,0.3); background: rgba(122,189,214,0.08); }
+.tag-ritual { color: #D4A8E0; border-color: rgba(212,168,224,0.3); background: rgba(212,168,224,0.08); }
+.tag-culture { color: #E8C06A; border-color: rgba(232,192,106,0.3); background: rgba(232,192,106,0.08); }
+.tag-musique { color: #80C894; border-color: rgba(128,200,148,0.3); background: rgba(128,200,148,0.08); }
+
+/* ── BILLETTERIE ── */
+#billetterie { background: var(--blanc); }
+.billets-grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.billet-card { border: 1px solid var(--bordure); padding: 2rem; position: relative; transition: border-color 0.2s, transform 0.2s; }
+.billet-card:hover { border-color: var(--bleu-moyen); transform: translateY(-3px); }
+.billet-card.recommande { border-color: var(--bleu-moyen); border-width: 2px; }
+.billet-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--bleu-moyen); color: #fff; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.25rem 1rem; white-space: nowrap; }
+.billet-type { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bleu-moyen); margin-bottom: 0.75rem; }
+.billet-nom { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: var(--bleu-fonce); margin-bottom: 0.5rem; }
+.billet-prix { font-size: 2rem; font-weight: 300; color: var(--bleu); margin-bottom: 0.25rem; }
+.billet-prix sup { font-size: 1rem; vertical-align: super; }
+.billet-prix-note { font-size: 0.78rem; color: var(--texte-sec); margin-bottom: 1.5rem; }
+.billet-features { list-style: none; margin-bottom: 2rem; }
+.billet-features li { font-size: 0.85rem; padding: 0.45rem 0; border-bottom: 1px solid var(--bordure); color: var(--texte-sec); display: flex; align-items: center; gap: 0.6rem; }
+.billet-features li::before { content: '✓'; color: var(--bleu-moyen); font-size: 0.8rem; flex-shrink: 0; }
+.billet-btn { width: 100%; padding: 0.85rem; font-size: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border: 1px solid var(--bleu-moyen); background: none; color: var(--bleu-moyen); }
+.billet-btn:hover, .billet-card.recommande .billet-btn { background: var(--bleu-moyen); color: #fff; }
+.billet-gratuit-note { margin-top: 2rem; padding: 1rem 1.5rem; background: var(--bleu-pale); border-left: 3px solid var(--bleu-moyen); font-size: 0.85rem; color: var(--bleu); line-height: 1.6; }
+
+/* ── CONTACT ── */
+#contact { background: var(--gris-clair); display: grid; grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; }
+.contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--bleu-fonce); margin-bottom: 1.5rem; }
+.contact-bloc { margin-bottom: 2rem; }
+.contact-bloc-titre { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bleu-moyen); margin-bottom: 0.6rem; }
+.contact-bloc-val { font-size: 0.9rem; color: var(--texte-sec); line-height: 1.7; }
+.contact-social { display: flex; gap: 0.75rem; margin-top: 2rem; }
+.social-btn { padding: 0.5rem 1rem; border: 1px solid var(--bordure); font-size: 0.75rem; color: var(--bleu); text-decoration: none; letter-spacing: 0.08em; transition: all 0.2s; }
+.social-btn:hover { background: var(--bleu); color: #fff; border-color: var(--bleu); }
+
+/* Formulaire */
+.contact-form { background: var(--blanc); padding: 2.5rem; border: 1px solid var(--bordure); }
+.form-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--bleu-fonce); margin-bottom: 0.5rem; }
+.form-subtitle { font-size: 0.85rem; color: var(--texte-sec); margin-bottom: 2rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texte-sec); }
+.form-input, .form-select, .form-textarea {
+  padding: 0.75rem 1rem; border: 1px solid var(--bordure); background: var(--blanc);
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--texte);
+  outline: none; transition: border-color 0.2s; width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--bleu-moyen); }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.form-radio { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--texte-sec); }
+.form-radio input { accent-color: var(--bleu-moyen); }
+.form-submit { width: 100%; padding: 1rem; background: var(--bleu-moyen); color: #fff; border: none; font-family: 'Inter', sans-serif; font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+.form-submit:hover { background: var(--bleu); }
+.form-success { display: none; padding: 1rem 1.5rem; background: #EAF5EA; border: 1px solid #7DC47D; color: #2D6A2D; font-size: 0.88rem; margin-top: 1rem; }
+
+/* ── FOOTER ── */
+footer { background: var(--bleu-fonce); padding: 4rem 5rem 2.5rem; border-top: 1px solid rgba(174,214,241,0.1); }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--bleu-clair); margin-bottom: 0.75rem; }
+.footer-tagline { font-size: 0.83rem; color: rgba(174,214,241,0.4); line-height: 1.7; max-width: 220px; }
+.footer-col h4 { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bleu-clair); margin-bottom: 1.25rem; opacity: 0.7; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 0.6rem; }
+.footer-col a { font-size: 0.85rem; color: rgba(174,214,241,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--bleu-clair); }
+.footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(174,214,241,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 0.78rem; color: rgba(174,214,241,0.25); }
+.unesco-footer { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: rgba(174,214,241,0.4); }
+.unesco-footer-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--or); }
+
+/* ── Animations ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-content > * { animation: fadeUp 0.7s ease both; }
+.hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .hero-content { padding: 7rem 2rem 4rem; }
+  .hero-stats { right: 2rem; bottom: 2.5rem; gap: 1.5rem; }
+  section { padding: 4rem 2rem; }
+  #histoire, #contact { grid-template-columns: 1fr; }
+  .photos-grille { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .photo-item:first-child { grid-column: 1 / -1; grid-row: auto; }
+  .photo-item:first-child img { height: 260px; }
+  .billets-grille { grid-template-columns: 1fr; max-width: 420px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 3rem 2rem 2rem; }
+}
+@media (max-width: 600px) {
+  .billets-grille { max-width: 100%; }
+  .footer-top { grid-template-columns: 1fr; }
+  .hero-stats { display: none; }
+}
+
+/* ── Langue ── */
+.fr-text { display: block; }
+.en-text { display: none; }
+body.lang-en .fr-text { display: none; }
+body.lang-en .en-text { display: block; }
+</style>
+</head>
+<body id="body-root">
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Ngondo</a>
+  <ul class="nav-links">
+    <li><a href="#histoire"><span class="fr-text">Histoire</span><span class="en-text">History</span></a></li>
+    <li><a href="#programme"><span class="fr-text">Programme</span><span class="en-text">Schedule</span></a></li>
+    <li><a href="#billetterie"><span class="fr-text">Billetterie</span><span class="en-text">Tickets</span></a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('fr', this)">FR</button>
+    <button class="lang-btn" onclick="setLang('en', this)">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="fr-text">Patrimoine Culturel Immatériel UNESCO · 2024</span>
+      <span class="en-text">UNESCO Intangible Cultural Heritage · 2024</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="fr-text">Festival<br><em>Ngondo</em></span>
+      <span class="en-text">The Ngondo<br><em>Festival</em></span>
+    </h1>
+    <p class="hero-subtitle">
+      <span class="fr-text">La Fête des Peuples Sawa — Fleuve Wouri, Douala</span>
+      <span class="en-text">The Festival of the Sawa Peoples — Wouri River, Douala</span>
+    </p>
+    <p class="hero-desc">
+      <span class="fr-text">Chaque année en décembre, des milliers de personnes se réunissent sur les rives du Wouri pour célébrer les traditions, les rituels sacrés et l'identité des peuples côtiers du Cameroun.</span>
+      <span class="en-text">Every December, thousands gather on the banks of the Wouri River to celebrate the traditions, sacred rituals, and identity of Cameroon's coastal peoples.</span>
+    </p>
+    <div class="hero-ctas">
+      <a href="#programme" class="btn-primary">
+        <span class="fr-text">Voir le programme →</span>
+        <span class="en-text">See the schedule →</span>
+      </a>
+      <a href="#billetterie" class="btn-secondary">
+        <span class="fr-text">Réserver</span>
+        <span class="en-text">Get tickets</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">1–14</div><div class="stat-label fr-text">Décembre 2026</div><div class="stat-label en-text">December 2026</div></div>
+    <div class="stat"><div class="stat-num">50k+</div><div class="stat-label fr-text">Visiteurs</div><div class="stat-label en-text">Visitors</div></div>
+    <div class="stat"><div class="stat-num">75+</div><div class="stat-label fr-text">Ans d'histoire</div><div class="stat-label en-text">Years of history</div></div>
+  </div>
+</section>
+
+<!-- UNESCO BANNER -->
+<div class="unesco-banner">
+  <div class="unesco-icon">🏛️</div>
+  <div class="unesco-text">
+    <span class="fr-text"><strong>Inscrit au Patrimoine Culturel Immatériel de l'Humanité</strong> — Le Ngondo a été officiellement reconnu par l'UNESCO en décembre 2024 lors de la 19e session du Comité intergouvernemental à Asunción, Paraguay. Le certificat UNESCO a été remis au festival en juillet 2025.</span>
+    <span class="en-text"><strong>Inscribed on the UNESCO Intangible Cultural Heritage of Humanity list</strong> — The Ngondo was officially recognised by UNESCO in December 2024 at the 19th session of the Intergovernmental Committee in Asunción, Paraguay. The UNESCO certificate was presented to the festival in July 2025.</span>
+  </div>
+</div>
+
+<!-- HISTOIRE -->
+<section id="histoire">
+  <div class="histoire-img-wrap">
+    <img class="histoire-img"
+      src="https://www.intheknow.com/wp-content/uploads/2020/01/shutterstock_1585526637-768x512.jpg"
+      alt="Cérémonie du Ngondo sur le fleuve Wouri"
+      onerror="this.style.background='#1B4F72';this.style.minHeight='400px'">
+    <div class="histoire-img-caption">
+      <span class="fr-text">« Le Jengu, esprit des eaux, guide les peuples Sawa depuis des siècles. »</span>
+      <span class="en-text">"The Jengu, spirit of the waters, has guided the Sawa peoples for centuries."</span>
+    </div>
+  </div>
+  <div class="histoire-texte">
+    <div class="section-tag">
+      <span class="fr-text">Origines &amp; Signification</span>
+      <span class="en-text">Origins &amp; Significance</span>
+    </div>
+    <h2 class="section-title">
+      <span class="fr-text">Un rituel ancestral<br>au cœur du Wouri</span>
+      <span class="en-text">An ancestral ritual<br>at the heart of the Wouri</span>
+    </h2>
+    <p class="fr-text">Le Ngondo est la grande fête traditionnelle des peuples Sawa — les peuples de la côte et des estuaires du Cameroun. Fondé en 1949 par Stéphane Ndoumbé Ekale Ngondo, ce festival était à l'origine une assemblée politique et spirituelle tenue au bord du fleuve Wouri à Douala.</p>
+    <p class="en-text">The Ngondo is the great traditional festival of the Sawa peoples — the coastal and estuarine peoples of Cameroon. Founded in 1949 by Stéphane Ndoumbé Ekale Ngondo, this festival was originally a political and spiritual assembly held on the banks of the Wouri River in Douala.</p>
+    <p class="fr-text">Au cœur de la cérémonie se trouve le Jengu — l'esprit des eaux — dont les oracles transmettent les messages des ancêtres. La plongée rituelle du messager dans les profondeurs du Wouri constitue le moment le plus solennel, suivi du retour des pirogues en liesse sur le fleuve.</p>
+    <p class="en-text">At the heart of the ceremony is the Jengu — the spirit of the waters — whose oracles transmit messages from the ancestors. The ritual dive of the messenger into the depths of the Wouri is the most solemn moment, followed by the triumphant return of the canoes on the river.</p>
+    <p class="fr-text">Interdit par le gouvernement en 1981 et rétabli en 1991, le Ngondo a été inscrit au Patrimoine Culturel Immatériel de l'Humanité par l'UNESCO en décembre 2024 — une reconnaissance mondiale de son importance unique.</p>
+    <p class="en-text">Banned by the government in 1981 and reinstated in 1991, the Ngondo was inscribed on UNESCO's Intangible Cultural Heritage of Humanity list in December 2024 — a global recognition of its unique importance.</p>
+    <div class="histoire-tags">
+      <span class="histoire-tag fr-text">Patrimoine UNESCO</span>
+      <span class="histoire-tag en-text">UNESCO Heritage</span>
+      <span class="histoire-tag fr-text">Depuis 1949</span>
+      <span class="histoire-tag en-text">Since 1949</span>
+      <span class="histoire-tag fr-text">Peuples Sawa</span>
+      <span class="histoire-tag en-text">Sawa Peoples</span>
+      <span class="histoire-tag fr-text">Douala, Cameroun</span>
+      <span class="histoire-tag en-text">Douala, Cameroon</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="section-tag">
+    <span class="fr-text">Galerie</span><span class="en-text">Gallery</span>
+  </div>
+  <h2 class="section-title">
+    <span class="fr-text">Le festival en images</span>
+    <span class="en-text">The festival in pictures</span>
+  </h2>
+  <div class="photos-grille">
+    <div class="photo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ngondo_2009.jpg/800px-Ngondo_2009.jpg"
+        alt="Pirogues sur le Wouri pendant le festival Ngondo"
+        onerror="this.src='';this.parentNode.style.background='#1B4F72'">
+      <div class="photo-overlay"><span class="photo-caption fr-text">Pirogues sur le Wouri</span><span class="photo-caption en-text">Canoes on the Wouri</span></div>
+    </div>
+    <div class="photo-item">
+      <img src="https://www.takeyourbackpack.com/wp-content/uploads/2024/07/Ngondo-Festival-Cameroon.jpg"
+        alt="Danseurs traditionnels Sawa au festival Ngondo"
+        onerror="this.src='';this.parentNode.style.background='#2E86C1'">
+      <div class="photo-overlay"><span class="photo-caption fr-text">Danses traditionnelles</span><span class="photo-caption en-text">Traditional dances</span></div>
+    </div>
+    <div class="photo-item">
+      <img src="https://www.intheknow.com/wp-content/uploads/2020/01/shutterstock_1585526638-768x512.jpg"
+        alt="Cérémonie spirituelle du Ngondo"
+        onerror="this.src='';this.parentNode.style.background='#0D2B40'">
+      <div class="photo-overlay"><span class="photo-caption fr-text">Cérémonie du Jengu</span><span class="photo-caption en-text">Jengu ceremony</span></div>
+    </div>
+    <div class="photo-item">
+      <img src="https://cdn.africa24tv.com/uploads/2025/10/ngondo.jpg"
+        alt="Foule au festival Ngondo, Douala"
+        onerror="this.src='';this.parentNode.style.background='#1B4F72'">
+      <div class="photo-overlay"><span class="photo-caption fr-text">Les berges du Wouri</span><span class="photo-caption en-text">The Wouri banks</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME -->
+<section id="programme">
+  <div class="prog-header">
+    <div>
+      <div class="section-tag">
+        <span class="fr-text">1 – 14 Décembre 2026</span>
+        <span class="en-text">1 – 14 December 2026</span>
+      </div>
+      <h2 class="section-title">
+        <span class="fr-text">Programme des festivités</span>
+        <span class="en-text">Festival Schedule</span>
+      </h2>
+      <p class="prog-desc fr-text">Deux semaines de célébrations, rituels, compétitions et spectacles sur les rives du Wouri.</p>
+      <p class="prog-desc en-text">Two weeks of celebrations, rituals, competitions, and performances on the banks of the Wouri.</p>
+    </div>
+    <div class="jours-filtres">
+      <button class="jour-btn actif" onclick="filtrerJour('tous', this)">
+        <span class="fr-text">Tous</span><span class="en-text">All</span>
+      </button>
+      <button class="jour-btn" onclick="filtrerJour('j1', this)">J 1–4</button>
+      <button class="jour-btn" onclick="filtrerJour('j2', this)">J 5–9</button>
+      <button class="jour-btn" onclick="filtrerJour('j3', this)">J 10–14</button>
+    </div>
+  </div>
+
+  <div class="events-grid" id="grille-evenements">
+    <div class="event-card vedette" data-jour="j1">
+      <div class="event-heure fr-text">1 Déc · 7h00</div>
+      <div class="event-heure en-text">Dec 1 · 7:00 AM</div>
+      <div class="event-nom fr-text">Cérémonie d'ouverture — Libations sur le fleuve</div>
+      <div class="event-nom en-text">Opening Ceremony — River Libations</div>
+      <div class="event-desc fr-text">Les chefs traditionnels Sawa ouvrent le festival en versant des libations pour les ancêtres au bord du Wouri. Fumigations, prières et appel aux génies des eaux.</div>
+      <div class="event-desc en-text">The traditional Sawa chiefs open the festival by pouring libations for the ancestors at the Wouri's edge. Incense, prayers, and the calling of water spirits.</div>
+      <div class="event-meta"><span class="event-lieu">Bonanjo, Douala</span><span class="tag tag-ritual fr-text">Rituel</span><span class="tag tag-ritual en-text">Ritual</span></div>
+    </div>
+    <div class="event-card" data-jour="j1">
+      <div class="event-heure fr-text">2 Déc · 14h00</div>
+      <div class="event-heure en-text">Dec 2 · 2:00 PM</div>
+      <div class="event-nom fr-text">Course de pirogues — Manche d'ouverture</div>
+      <div class="event-nom en-text">Canoe Race — Opening Heat</div>
+      <div class="event-desc fr-text">Première compétition nautique entre les équipes des différentes communautés Sawa. Tradition millénaire symbolisant la cohésion du peuple du fleuve.</div>
+      <div class="event-desc en-text">First nautical competition between teams from different Sawa communities. A millennia-old tradition symbolising the unity of the river people.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Fleuve Wouri</span><span class="event-lieu en-text">Wouri River</span><span class="tag tag-eau fr-text">Nautique</span><span class="tag tag-eau en-text">Nautical</span></div>
+    </div>
+    <div class="event-card" data-jour="j1">
+      <div class="event-heure fr-text">3–4 Déc · 20h00</div>
+      <div class="event-heure en-text">Dec 3–4 · 8:00 PM</div>
+      <div class="event-nom fr-text">Soirée des arts Sawa — Makossa &amp; Bikutsi</div>
+      <div class="event-nom en-text">Sawa Arts Evening — Makossa &amp; Bikutsi</div>
+      <div class="event-desc fr-text">Grande nuit de musique traditionnelle et contemporaine. Artistes locaux et invités nationaux célèbrent le patrimoine musical camerounais.</div>
+      <div class="event-desc en-text">A grand night of traditional and contemporary music. Local artists and national guests celebrate Cameroonian musical heritage.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Esplanade du Fleuve</span><span class="event-lieu en-text">Riverfront Esplanade</span><span class="tag tag-musique fr-text">Musique</span><span class="tag tag-musique en-text">Music</span></div>
+    </div>
+    <div class="event-card vedette" data-jour="j2">
+      <div class="event-heure fr-text">5 Déc · 6h30</div>
+      <div class="event-heure en-text">Dec 5 · 6:30 AM</div>
+      <div class="event-nom fr-text">Mboa Membé — La Plongée sacrée du Jengu</div>
+      <div class="event-nom en-text">Mboa Membé — The Sacred Jengu Dive</div>
+      <div class="event-desc fr-text">Cérémonie la plus solennelle. Le messager plonge dans le Wouri pour consulter les esprits ancestraux et revient avec un message pour tout le peuple Sawa.</div>
+      <div class="event-desc en-text">The most solemn ceremony. The messenger dives into the Wouri to consult ancestral spirits and returns with a message for the entire Sawa people.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Site sacré du Wouri</span><span class="event-lieu en-text">Sacred Wouri Site</span><span class="tag tag-ritual fr-text">Rituel sacré</span><span class="tag tag-ritual en-text">Sacred Ritual</span></div>
+    </div>
+    <div class="event-card" data-jour="j2">
+      <div class="event-heure fr-text">6–7 Déc · 10h00</div>
+      <div class="event-heure en-text">Dec 6–7 · 10:00 AM</div>
+      <div class="event-nom fr-text">Exposition artisanale — Trésors Sawa</div>
+      <div class="event-nom en-text">Crafts Exhibition — Sawa Treasures</div>
+      <div class="event-desc fr-text">Marché artisanal rassemblant sculpteurs, tisserands, potiers et joailliers. Démonstrations en direct et ventes d'œuvres authentiques.</div>
+      <div class="event-desc en-text">Artisan market bringing together sculptors, weavers, potters, and jewellers. Live demonstrations and sales of authentic works.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Place du Gouvernement</span><span class="event-lieu en-text">Government Square</span><span class="tag tag-culture fr-text">Artisanat</span><span class="tag tag-culture en-text">Crafts</span></div>
+    </div>
+    <div class="event-card" data-jour="j2">
+      <div class="event-heure fr-text">8–9 Déc · 15h00</div>
+      <div class="event-heure en-text">Dec 8–9 · 3:00 PM</div>
+      <div class="event-nom fr-text">Danses traditionnelles — Ngosso &amp; Assiko</div>
+      <div class="event-nom en-text">Traditional Dances — Ngosso &amp; Assiko</div>
+      <div class="event-desc fr-text">Troupes en tenues traditionnelles présentent les danses sacrées et populaires des peuples Sawa. Apprentissage ouvert au public en soirée.</div>
+      <div class="event-desc en-text">Troupes in traditional dress perform sacred and popular Sawa dances. Evening workshops open to the public.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Palais des Congrès</span><span class="event-lieu en-text">Congress Hall</span><span class="tag tag-culture fr-text">Danse</span><span class="tag tag-culture en-text">Dance</span></div>
+    </div>
+    <div class="event-card vedette" data-jour="j3">
+      <div class="event-heure fr-text">11 Déc · 14h00</div>
+      <div class="event-heure en-text">Dec 11 · 2:00 PM</div>
+      <div class="event-nom fr-text">Grand Prix de pirogues — Finale</div>
+      <div class="event-nom en-text">Canoe Grand Prix — Final</div>
+      <div class="event-desc fr-text">La finale couronne les meilleurs pagayeurs. Des milliers de spectateurs le long des berges encouragent leur clan sous les battements de tambours.</div>
+      <div class="event-desc en-text">The final crowns the best paddlers. Thousands of spectators along the riverbanks cheer their clan to the beat of drums.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Fleuve Wouri — Parcours officiel</span><span class="event-lieu en-text">Wouri River — Official Course</span><span class="tag tag-eau fr-text">Nautique</span><span class="tag tag-eau en-text">Nautical</span></div>
+    </div>
+    <div class="event-card" data-jour="j3">
+      <div class="event-heure fr-text">12 Déc · 18h00</div>
+      <div class="event-heure en-text">Dec 12 · 6:00 PM</div>
+      <div class="event-nom fr-text">Palabre des anciens — Forum des chefs</div>
+      <div class="event-nom en-text">Elders' Palabre — Chiefs' Forum</div>
+      <div class="event-desc fr-text">Réunion des chefs traditionnels Sawa pour délibérer des questions communautaires. Cérémonie ouverte au public après les délibérations.</div>
+      <div class="event-desc en-text">Meeting of traditional Sawa chiefs to deliberate on community matters. Ceremony open to the public after deliberations.</div>
+      <div class="event-meta"><span class="event-lieu fr-text">Palais des Chefs, Deido</span><span class="event-lieu en-text">Chiefs' Palace, Deido</span><span class="tag tag-culture fr-text">Cérémoniel</span><span class="tag tag-culture en-text">Ceremonial</span></div>
+    </div>
+    <div class="event-card vedette" data-jour="j3">
+      <div class="event-heure fr-text">14 Déc · 19h00</div>
+      <div class="event-heure en-text">Dec 14 · 7:00 PM</div>
+      <div class="event-nom fr-text">Grand Ngoma — Nuit de clôture</div>
+      <div class="event-nom en-text">Grand Ngoma — Closing Night</div>
+      <div class="event-desc fr-text">La cérémonie finale réunit tout le peuple Sawa dans une nuit de tambours, de chants, de feux et de prières. Un moment d'émotion collective inoubliable.</div>
+      <div class="event-desc en-text">The final ceremony brings all the Sawa people together for a night of drums, songs, fires, and prayers. An unforgettable moment of collective emotion.</div>
+      <div class="event-meta"><span class="event-lieu">Berge du Wouri</span><span class="tag tag-musique fr-text">Clôture</span><span class="tag tag-musique en-text">Closing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BILLETTERIE -->
+<section id="billetterie">
+  <div class="section-tag">
+    <span class="fr-text">Réservation</span><span class="en-text">Booking</span>
+  </div>
+  <h2 class="section-title">
+    <span class="fr-text">Réservez votre place</span>
+    <span class="en-text">Book your place</span>
+  </h2>
+  <div class="billets-grille">
+
+    <div class="billet-card">
+      <div class="billet-type fr-text">Accès libre</div>
+      <div class="billet-type en-text">Free access</div>
+      <div class="billet-nom fr-text">Pass Journée</div>
+      <div class="billet-nom en-text">Day Pass</div>
+      <div class="billet-prix"><sup>XAF</sup>0</div>
+      <div class="billet-prix-note fr-text">Gratuit — Entrée libre pour tous</div>
+      <div class="billet-prix-note en-text">Free — Open entry for all</div>
+      <ul class="billet-features">
+        <li class="fr-text">Accès à l'esplanade principale</li>
+        <li class="en-text">Access to the main esplanade</li>
+        <li class="fr-text">Spectacles et danses</li>
+        <li class="en-text">Performances and dances</li>
+        <li class="fr-text">Marché artisanal</li>
+        <li class="en-text">Artisan market</li>
+        <li class="fr-text">Courses de pirogues (spectateur)</li>
+        <li class="en-text">Canoe races (spectator)</li>
+      </ul>
+      <button class="billet-btn" onclick="ouvrirModal('gratuit')">
+        <span class="fr-text">S'inscrire gratuitement</span>
+        <span class="en-text">Register for free</span>
+      </button>
+    </div>
+
+    <div class="billet-card recommande">
+      <div class="billet-badge fr-text">Recommandé</div>
+      <div class="billet-badge en-text">Recommended</div>
+      <div class="billet-type fr-text">Expérience complète</div>
+      <div class="billet-type en-text">Full experience</div>
+      <div class="billet-nom fr-text">Pass Festival</div>
+      <div class="billet-nom en-text">Festival Pass</div>
+      <div class="billet-prix"><sup>XAF </sup>25 000</div>
+      <div class="billet-prix-note fr-text">Valable les 14 jours du festival</div>
+      <div class="billet-prix-note en-text">Valid for all 14 festival days</div>
+      <ul class="billet-features">
+        <li class="fr-text">Tout le Pass Journée</li>
+        <li class="en-text">Everything in Day Pass</li>
+        <li class="fr-text">Tribune réservée — courses de pirogues</li>
+        <li class="en-text">Reserved grandstand — canoe races</li>
+        <li class="fr-text">Accès aux cérémonies nocturnes</li>
+        <li class="en-text">Access to evening ceremonies</li>
+        <li class="fr-text">Guide culturel bilingue offert</li>
+        <li class="en-text">Complimentary bilingual cultural guide</li>
+        <li class="fr-text">Soirée de clôture Grand Ngoma</li>
+        <li class="en-text">Grand Ngoma closing night</li>
+      </ul>
+      <button class="billet-btn" onclick="ouvrirModal('festival')">
+        <span class="fr-text">Réserver ce pass</span>
+        <span class="en-text">Book this pass</span>
+      </button>
+    </div>
+
+    <div class="billet-card">
+      <div class="billet-type fr-text">Immersion totale</div>
+      <div class="billet-type en-text">Full immersion</div>
+      <div class="billet-nom fr-text">Pass VIP</div>
+      <div class="billet-nom en-text">VIP Pass</div>
+      <div class="billet-prix"><sup>XAF </sup>75 000</div>
+      <div class="billet-prix-note fr-text">Accès privilégié + accompagnement</div>
+      <div class="billet-prix-note en-text">Priority access + guided experience</div>
+      <ul class="billet-features">
+        <li class="fr-text">Tout le Pass Festival</li>
+        <li class="en-text">Everything in Festival Pass</li>
+        <li class="fr-text">Accès au site sacré du Mboa Membé</li>
+        <li class="en-text">Access to the sacred Mboa Membé site</li>
+        <li class="fr-text">Guide personnel dédié (bilingue)</li>
+        <li class="en-text">Dedicated personal guide (bilingual)</li>
+        <li class="fr-text">Accueil protocolaire par les chefs</li>
+        <li class="en-text">Official welcome by chiefs</li>
+        <li class="fr-text">Dîner traditionnel inclus</li>
+        <li class="en-text">Traditional dinner included</li>
+      </ul>
+      <button class="billet-btn" onclick="ouvrirModal('vip')">
+        <span class="fr-text">Réserver VIP</span>
+        <span class="en-text">Book VIP</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="billet-gratuit-note fr-text">
+    ℹ️ La grande majorité des événements du Ngondo sont gratuits et ouverts à tous. Les passes permettent un accès privilégié aux sites réservés et aux cérémonies intimes. Pour les groupes de 10+ personnes, contactez-nous pour un tarif spécial.
+  </div>
+  <div class="billet-gratuit-note en-text">
+    ℹ️ The vast majority of Ngondo events are free and open to all. Passes provide privileged access to reserved sites and intimate ceremonies. For groups of 10+ people, contact us for a special rate.
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-tag">
+      <span class="fr-text">Nous contacter</span><span class="en-text">Get in touch</span>
+    </div>
+    <h2 class="section-title">
+      <span class="fr-text">Planifiez votre venue</span>
+      <span class="en-text">Plan your visit</span>
+    </h2>
+    <div class="contact-bloc">
+      <div class="contact-bloc-titre fr-text">Adresse</div>
+      <div class="contact-bloc-titre en-text">Address</div>
+      <div class="contact-bloc-val">Comité d'Organisation Ngondo<br>Berge du Wouri, Bonanjo<br>Douala, Cameroun</div>
+    </div>
+    <div class="contact-bloc">
+      <div class="contact-bloc-titre">Email</div>
+      <div class="contact-bloc-val">info@ngondo-festival.cm<br>presse@ngondo-festival.cm</div>
+    </div>
+    <div class="contact-bloc">
+      <div class="contact-bloc-titre fr-text">Dates 2026</div>
+      <div class="contact-bloc-titre en-text">2026 Dates</div>
+      <div class="contact-bloc-val fr-text">1er — 14 décembre 2026<br>Accès libre pour la majorité des événements</div>
+      <div class="contact-bloc-val en-text">1 — 14 December 2026<br>Free admission for most events</div>
+    </div>
+    <div class="contact-bloc">
+      <div class="contact-bloc-titre fr-text">Accès</div>
+      <div class="contact-bloc-titre en-text">Getting there</div>
+      <div class="contact-bloc-val fr-text">Aéroport int. de Douala (DLA) — 10 km<br>Taxis et bus disponibles depuis le centre</div>
+      <div class="contact-bloc-val en-text">Douala Int. Airport (DLA) — 10 km<br>Taxis and buses available from the city centre</div>
+    </div>
+    <div class="contact-social">
+      <a href="#" class="social-btn">Facebook</a>
+      <a href="#" class="social-btn">Instagram</a>
+      <a href="#" class="social-btn">YouTube</a>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="form-title fr-text">Envoyez-nous un message</div>
+    <div class="form-title en-text">Send us a message</div>
+    <div class="form-subtitle fr-text">Questions, groupes, presse, partenariats — nous répondons sous 48h.</div>
+    <div class="form-subtitle en-text">Questions, groups, press, partnerships — we respond within 48 hours.</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label fr-text">Prénom</label>
+        <label class="form-label en-text">First name</label>
+        <input type="text" class="form-input" id="prenom" placeholder="Jean">
+      </div>
+      <div class="form-group">
+        <label class="form-label fr-text">Nom</label>
+        <label class="form-label en-text">Last name</label>
+        <input type="text" class="form-input" id="nom" placeholder="Dupont">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="email" placeholder="jean.dupont@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label fr-text">Objet de la demande</label>
+      <label class="form-label en-text">Subject</label>
+      <select class="form-select" id="objet">
+        <option class="fr-text" value="">— Sélectionner —</option>
+        <option class="en-text" value="">— Select —</option>
+        <option value="info" class="fr-text">Informations générales</option>
+        <option value="info" class="en-text">General information</option>
+        <option value="groupe" class="fr-text">Visite en groupe</option>
+        <option value="groupe" class="en-text">Group visit</option>
+        <option value="presse" class="fr-text">Demande presse / médias</option>
+        <option value="presse" class="en-text">Press / media request</option>
+        <option value="partenariat" class="fr-text">Partenariat</option>
+        <option value="partenariat" class="en-text">Partnership</option>
+        <option value="autre" class="fr-text">Autre</option>
+        <option value="autre" class="en-text">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label fr-text">Langue préférée / Preferred language</label>
+      <label class="form-label en-text">Preferred language / Langue préférée</label>
+      <div class="form-radio-group">
+        <label class="form-radio"><input type="radio" name="langue" value="fr" checked> Français</label>
+        <label class="form-radio"><input type="radio" name="langue" value="en"> English</label>
+        <label class="form-radio"><input type="radio" name="langue" value="both"> Les deux / Both</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label fr-text">Message</label>
+      <label class="form-label en-text">Message</label>
+      <textarea class="form-textarea" id="message" placeholder="Votre message... / Your message..."></textarea>
+    </div>
+    <button class="form-submit" onclick="envoyerFormulaire()">
+      <span class="fr-text">Envoyer le message →</span>
+      <span class="en-text">Send message →</span>
+    </button>
+    <div class="form-success" id="form-success">
+      <span class="fr-text">✓ Message envoyé ! Nous vous répondrons dans les 48 heures.</span>
+      <span class="en-text">✓ Message sent! We'll get back to you within 48 hours.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Ngondo</div>
+      <p class="footer-tagline fr-text">Le festival culturel des peuples Sawa — gardiens des traditions du fleuve Wouri depuis 1949. Patrimoine UNESCO depuis 2024.</p>
+      <p class="footer-tagline en-text">The cultural festival of the Sawa peoples — guardians of the Wouri River traditions since 1949. UNESCO Heritage since 2024.</p>
+    </div>
+    <div class="footer-col">
+      <h4 class="fr-text">Festival</h4>
+      <h4 class="en-text">Festival</h4>
+      <ul>
+        <li><a href="#histoire"><span class="fr-text">Histoire</span><span class="en-text">History</span></a></li>
+        <li><a href="#programme"><span class="fr-text">Programme</span><span class="en-text">Schedule</span></a></li>
+        <li><a href="#photos">Gallery</a></li>
+        <li><a href="#billetterie"><span class="fr-text">Billetterie</span><span class="en-text">Tickets</span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="fr-text">Informations</h4>
+      <h4 class="en-text">Information</h4>
+      <ul>
+        <li><a href="#contact"><span class="fr-text">Infos pratiques</span><span class="en-text">Practical info</span></a></li>
+        <li><a href="#contact"><span class="fr-text">Hébergements</span><span class="en-text">Accommodation</span></a></li>
+        <li><a href="#contact"><span class="fr-text">Visas &amp; accès</span><span class="en-text">Visas &amp; access</span></a></li>
+        <li><a href="#contact"><span class="fr-text">Presse</span><span class="en-text">Press</span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:info@ngondo-festival.cm">info@ngondo-festival.cm</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy fr-text">© 2026 Festival Ngondo — Douala, Cameroun. Tous droits réservés.</p>
+    <p class="footer-copy en-text">© 2026 Festival Ngondo — Douala, Cameroon. All rights reserved.</p>
+    <div class="unesco-footer">
+      <div class="unesco-footer-dot"></div>
+      <span class="fr-text">Patrimoine Immatériel UNESCO 2024</span>
+      <span class="en-text">UNESCO Intangible Heritage 2024</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL BILLETTERIE -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(13,43,64,0.85);z-index:200;align-items:center;justify-content:center;padding:2rem;">
+  <div style="background:var(--blanc);max-width:480px;width:100%;padding:2.5rem;position:relative;">
+    <button onclick="fermerModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--texte-sec);">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (lang === 'en') {
+    document.body.classList.add('lang-en');
+  } else {
+    document.body.classList.remove('lang-en');
+  }
+}
+
+function filtrerJour(filtre, btn) {
+  document.querySelectorAll('.jour-btn').forEach(b => b.classList.remove('actif'));
+  btn.classList.add('actif');
+  document.querySelectorAll('.event-card').forEach(card => {
+    card.style.display = (filtre === 'tous' || card.dataset.jour === filtre) ? '' : 'none';
+  });
+}
+
+function ouvrirModal(type) {
+  const isEn = document.body.classList.contains('lang-en');
+  const configs = {
+    gratuit: {
+      fr: { titre: 'Inscription gratuite', desc: 'Aucune réservation requise. Venez librement du 1er au 14 décembre 2026 sur les berges du Wouri à Bonanjo, Douala. Pour les groupes scolaires, remplissez le formulaire ci-dessous.' },
+      en: { titre: 'Free Registration', desc: 'No booking required. Come freely from 1 to 14 December 2026 on the Wouri banks at Bonanjo, Douala. For school groups, please fill in the form below.' }
+    },
+    festival: {
+      fr: { titre: 'Pass Festival — XAF 25 000', desc: 'Valable 14 jours. Inclut la tribune réservée pour les courses de pirogues, l\'accès aux cérémonies nocturnes et le guide culturel bilingue.' },
+      en: { titre: 'Festival Pass — XAF 25,000', desc: 'Valid for 14 days. Includes reserved grandstand for canoe races, access to evening ceremonies, and complimentary bilingual cultural guide.' }
+    },
+    vip: {
+      fr: { titre: 'Pass VIP — XAF 75 000', desc: 'Immersion totale. Guide personnel dédié, accès au site sacré du Mboa Membé, accueil par les chefs traditionnels, et dîner traditionnel inclus.' },
+      en: { titre: 'VIP Pass — XAF 75,000', desc: 'Total immersion. Dedicated personal guide, access to the sacred Mboa Membé site, official welcome by traditional chiefs, and traditional dinner included.' }
+    }
+  };
+  const c = isEn ? configs[type].en : configs[type].fr;
+  document.getElementById('modal-content').innerHTML = `
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--bleu-fonce);margin-bottom:0.75rem;">${c.titre}</h3>
+    <p style="font-size:0.88rem;line-height:1.7;color:var(--texte-sec);margin-bottom:1.5rem;">${c.desc}</p>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;">
+      <input type="text" class="form-input" placeholder="${isEn ? 'Full name' : 'Nom complet'}">
+      <input type="email" class="form-input" placeholder="Email">
+      <input type="text" class="form-input" placeholder="${isEn ? 'Phone (optional)' : 'Téléphone (optionnel)'}">
+    </div>
+    <button class="form-submit" style="margin-top:1.25rem;" onclick="confirmerReservation()">${isEn ? 'Confirm booking →' : 'Confirmer la réservation →'}</button>
+  `;
+  const overlay = document.getElementById('modal-overlay');
+  overlay.style.display = 'flex';
+}
+
+function fermerModal() {
+  document.getElementById('modal-overlay').style.display = 'none';
+}
+
+function confirmerReservation() {
+  const isEn = document.body.classList.contains('lang-en');
+  document.getElementById('modal-content').innerHTML = `
+    <div style="text-align:center;padding:2rem 1rem;">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">✓</div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--bleu-fonce);margin-bottom:0.75rem;">${isEn ? 'Booking confirmed!' : 'Réservation confirmée !'}</h3>
+      <p style="font-size:0.88rem;color:var(--texte-sec);line-height:1.7;">${isEn ? 'You will receive a confirmation email within 24 hours. See you in December 2026 on the banks of the Wouri!' : 'Vous recevrez un email de confirmation dans les 24h. À bientôt en décembre 2026 sur les berges du Wouri !'}</p>
+    </div>`;
+}
+
+function envoyerFormulaire() {
+  const isEn = document.body.classList.contains('lang-en');
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  if (!email || !message) {
+    alert(isEn ? 'Please fill in the email and message fields.' : 'Veuillez renseigner l\'email et le message.');
+    return;
+  }
+  document.getElementById('form-success').style.display = 'block';
+  setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 5000);
+}
+
+// Fermer le modal en cliquant dehors
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) fermerModal();
+});
+
+// Animations au scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.event-card, .billet-card, .contact-bloc, .photo-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
